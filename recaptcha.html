@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Google reCAPTCHA</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body>
+    <div class="captcha-container">
+      <h3>🔒 Verifikasi reCAPTCHA</h3>
+      <form id="recaptchaForm">
+        <div class="g-recaptcha" data-sitekey="ISI_SITE_KEY_KAMU"></div>
+        <button type="submit">Verifikasi & Klaim</button>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      document.getElementById("recaptchaForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const token = grecaptcha.getResponse();
+        if (!token) {
+          alert("❗ Verifikasi gagal, coba lagi.");
+          return;
+        }
+
+        const userId = new URLSearchParams(window.location.search).get("user_id");
+
+        await fetch(`https://fluxion-fastapi.onrender.com/captcha/claim`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user_id: userId, jenis: "recaptcha", token })
+        });
+
+        alert("✅ Berhasil diverifikasi! Poin akan dikirim.");
+      });
+    </script>
+  </body>
+</html>
