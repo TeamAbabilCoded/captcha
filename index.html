@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Captcha Pop-up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="overlay" id="overlay">
+    <div class="modal-border">
+      <div class="captcha-popup">
+        <h3>🛡️ Selesaikan Captcha</h3>
+        <form id="captchaForm">
+          <p>Masukkan angka berikut:</p>
+          <span id="captchaText" class="captcha-text"></span>
+          <input type="text" id="captchaInput" required placeholder="Tulis di sini..." />
+          <button type="submit">Kirim</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
