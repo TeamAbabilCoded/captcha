@@ -19,7 +19,6 @@
 
   <script src="script.js"></script>
   <script>
-    // Buat captcha acak
     const captchaText = document.getElementById("captchaText");
     const captcha = Math.floor(Math.random() * 9000 + 1000).toString();
     captchaText.textContent = captcha;
@@ -28,7 +27,6 @@
       e.preventDefault();
       const input = document.getElementById("captchaInput").value;
       if (input === captcha) {
-        // Kirim klaim poin ke backend kamu
         const userId = new URLSearchParams(window.location.search).get("user_id");
         await fetch(`https://fluxion-fastapi.onrender.com/captcha/claim`, {
           method: "POST",
