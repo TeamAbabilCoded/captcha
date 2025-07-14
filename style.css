@@ -1,0 +1,33 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.captcha-container {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00f0ff;
+  text-align: center;
+}
+
+input, button {
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  background: #00f0ff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
