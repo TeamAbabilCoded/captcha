@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0d1117;
+  color: #fff;
+  overflow: hidden;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-border {
+  position: relative;
+  padding: 3px;
+  border-radius: 12px;
+  background: linear-gradient(270deg, #00f0ff, #00ffc3, #00f0ff);
+  background-size: 600% 600%;
+  animation: borderRun 6s linear infinite;
+}
+
+.captcha-popup {
+  background: #161b22;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90vw;
+  max-width: 360px;
+  text-align: center;
+}
+
+#captchaCanvas {
+  margin: 10px auto;
+  display: block;
+  border-radius: 5px;
+  background: #0d1117;
+  box-shadow: 0 0 10px rgba(0,255,255,0.3);
+}
+
+input, button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+input {
+  background: #0d1117;
+  color: #fff;
+  border: 1px solid #30363d;
+}
+
+button {
+  background: #00f0ff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #00d2e6;
+}
+
+.countdown-text {
+  margin-top: 10px;
+  font-size: 1em;
+  color: #ccc;
+}
+
+.hourglass {
+  display: inline-block;
+  transition: opacity 2s ease;
+}
+
+.hourglass.fade-out {
+  opacity: 0;
+}
+
+@keyframes borderRun {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
