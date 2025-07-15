@@ -110,16 +110,6 @@ button:hover {
 }
 
 /* Animasi putar emoji */
-.hourglass {
-  display: inline-block;
-  animation: spin 2s linear infinite;
-  transition: opacity 2s ease;
-}
-
-.hourglass.fade-out {
-  animation: none;
-  opacity: 0;
-}
 
 /* Animasi putar */
 @keyframes spin {
