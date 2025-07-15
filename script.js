@@ -10,6 +10,44 @@ window.addEventListener("DOMContentLoaded", () => {
   let timer;
   let interval;
 
+  function startTimer() {
+  clearTimeout(timer);
+  clearInterval(interval);
+
+  let timeLeft = 30;
+  timerDisplay.textContent = timeLeft;
+  hourglass.classList.remove("fade-out");
+
+  const emojiFrames = ["⏳", "⌛"];
+  let emojiIndex = 0;
+
+  interval = setInterval(() => {
+    timeLeft--;
+    timerDisplay.textContent = timeLeft;
+
+    // Tukar emoji ⏳ <-> ⌛ setiap detik
+    emojiIndex = (emojiIndex + 1) % emojiFrames.length;
+    hourglass.textContent = emojiFrames[emojiIndex];
+
+    if (timeLeft <= 0) {
+      clearInterval(interval);
+    }
+  }, 1000);
+
+  timer = setTimeout(() => {
+    captchaText.classList.add("fade-blur-left");
+    input.disabled = true;
+    button.disabled = true;
+    button.innerText = "⏳ Mengganti kode...";
+
+    hourglass.classList.add("fade-out");
+
+    setTimeout(() => {
+      generateCaptcha();
+    }, 2000);
+  }, 30000);
+}
+
   function generateCaptcha() {
     captcha = Math.floor(Math.random() * 9000 + 1000).toString();
     captchaText.textContent = captcha;
