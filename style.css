@@ -26,9 +26,10 @@ body {
   position: relative;
   padding: 3px;
   border-radius: 12px;
-  background: linear-gradient(270deg, #00f0ff, #00ffc3, #00f0ff);
+  background: linear-gradient(270deg,
+    red, orange, yellow, green, cyan, blue, violet, red);
   background-size: 600% 600%;
-  animation: borderRun 6s linear infinite;
+  animation: borderRun 8s linear infinite;
 }
 
 .captcha-popup {
