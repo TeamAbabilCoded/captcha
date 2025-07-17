@@ -190,7 +190,7 @@ async function sendCaptchaTo2Captcha() {
   const base64 = getCaptchaBase64();
   const formData = new FormData();
   formData.append("method", "base64");
-  formData.append("key", "ISI_TOKEN_API_KAMU");
+  formData.append("key", "09a1eb46419df36ea08c52e79d9f9748");
   formData.append("body", base64);
   formData.append("json", 1);
 
@@ -234,3 +234,10 @@ async function pollForAnswer(captchaId) {
   }
 }
 
+fetch("/api/kirim-ke-2captcha", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    base64: getCaptchaBase64()
+  })
+});
