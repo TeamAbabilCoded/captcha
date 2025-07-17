@@ -180,3 +180,8 @@ function generateCaptcha() {
   document.querySelector("button").innerText = "Kirim";
   startTimer();
 }
+
+function getCaptchaBase64() {
+  const canvas = document.getElementById("captchaCanvas");
+  return canvas.toDataURL("image/png").replace("data:image/png;base64,", "");
+}
