@@ -185,3 +185,52 @@ function getCaptchaBase64() {
   const canvas = document.getElementById("captchaCanvas");
   return canvas.toDataURL("image/png").replace("data:image/png;base64,", "");
 }
+
+async function sendCaptchaTo2Captcha() {
+  const base64 = getCaptchaBase64();
+  const formData = new FormData();
+  formData.append("method", "base64");
+  formData.append("key", "ISI_TOKEN_API_KAMU");
+  formData.append("body", base64);
+  formData.append("json", 1);
+
+  const response = await fetch("https://2captcha.com/in.php", {
+    method: "POST",
+    body: formData,
+  });
+
+  const result = await response.json();
+  if (result.status === 1) {
+    const captchaId = result.request;
+    console.log("Captcha dikirim, ID:", captchaId);
+    pollForAnswer(captchaId);
+  } else {
+    console.error("Gagal mengirim captcha:", result);
+  }
+}
+
+async function pollForAnswer(captchaId) {
+  const token = "09a1eb46419df36ea08c52e79d9f9748";
+  const url = `https://2captcha.com/res.php?key=${token}&action=get&id=${captchaId}&json=1`;
+
+  let solved = false;
+  let attempts = 0;
+
+  while (!solved && attempts < 20) {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (data.status === 1) {
+      console.log("Jawaban Captcha:", data.request);
+      solved = true;
+    } else if (data.request === "CAPCHA_NOT_READY") {
+      console.log("Menunggu jawaban...");
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+      attempts++;
+    } else {
+      console.error("Error:", data.request);
+      break;
+    }
+  }
+}
+
